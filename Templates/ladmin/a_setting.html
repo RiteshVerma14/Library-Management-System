@@ -1,0 +1,49 @@
+{% extends 'a_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Settings</title>
+{% endblock%}
+
+{% block content %}
+
+<!-- Style -->
+<style>
+    .box{
+        width: 12rem;
+        border-radius: 7px;
+    }
+
+    .box:hover{
+        box-shadow: 0px 0px 10px 0px gray;
+    }
+</style>
+
+<!-- Dashboard heading -->
+    <div class="p-3 mb-4 text-center">
+        <span class="title">Settings</span>
+    </div>
+
+<!-- Dashboard -->
+    <div class="container">
+        <div class="row">
+            <a href="/a_add_day_fee/" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Day and Penalty</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-calendar"></span></h5>
+                    </div>
+                </div>
+            </a>
+            <a href="#" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Accounting</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-money"></span></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

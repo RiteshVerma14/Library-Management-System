@@ -1,0 +1,114 @@
+{% extends 's_base.html' %}
+{% load static %}
+
+{% block title %}
+<script src="{% static 'jS/ajx.js' %}"></script>
+<title>Return Book</title>
+{% endblock%}
+
+{% block content %}
+
+<style>
+    .bg{
+        background:white;
+    }
+</style>
+
+<!-- Title -->
+<div class="p-3 mb-4 text-center">
+    <span class="title">Return Book</span>
+</div>
+
+<!-- Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 bg p-5 mb-5">
+            <div class="row">
+                {% if S %}
+                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         {{S}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                     </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <form method="post" action="/s_return_book/" enctype="multipart/form-data">
+                            {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Roll No.:</label>
+                                        <input type="text" class="form-control" name="st_roll_no" placeholder="Enter Student Roll No." value="" required />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="submit" name="submit" class="btn btn-primary" style="margin-top:4.5vh;">Verify</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {% if details %}
+                            {% for d in details %}
+                        <div class="col-sm-6">
+                            <form method="post" id="book_return" enctype="multipart/form-data">
+                            {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Book No.:</label>
+                                        <input type="number" class="form-control" name="b_no" id="b_no" placeholder="Enter Book No." value="" required />
+                                        <p style="font-size:12px;color:red;" id="error"></p>
+                                        <input type="hidden" class="form-control" name="st_roll_no" id="st_roll_no" value="{{d.st_roll_no}}" required />
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <button type="submit" name="submit" class="btn btn-primary" style="margin-top:4.5vh;">Issue</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <label>Name:</label>
+                                    <input type="text" class="form-control" name="st_name" value="{{d.st_name}}" readonly />
+                                    <label class="mt-2">Contact:</label>
+                                    <input type="number" class="form-control" name="st_mob_no" value="{{d.st_mob_no}}" readonly />
+                                    <label class="mt-2">Email:</label>
+                                    <input type="email" class="form-control" name="st_email" value="{{d.st_email}}" readonly />
+                                    <label class="mt-2">Course:</label>
+                                    <input type="text" class="form-control" name="st_course" value="{{d.st_course}}" readonly />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Branch:</label>
+                                    <input type="text" class="form-control" name="st_branch" value="{{d.st_branch}}" readonly />
+                                    <label class="mt-2">Year:</label>
+                                    <input type="number" class="form-control" name="st_year" value="{{d.st_year}}" readonly />
+                                    <label class="mt-2">Date of Birth:</label>
+                                    <input type="text" class="form-control" name="st_dob"  value="{{d.st_dob}}" readonly />
+                                </div>
+                                <div class="col-sm-3">
+                                    <label>Image:</label>
+                                    <div><img src="/{{d.st_img}}" style="height:200px;width:150px;" class="border border-secondary img-fluid"></div>
+                                </div>
+                                {% endfor %}
+                                <div class="col-sm-3">
+                                    <label>Issued Book:</label>
+                                    {% for r in result %}
+                                    <input type="text" class="form-control mt-2" id="cn" name="" value="{{r.b_no}}" readonly />
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

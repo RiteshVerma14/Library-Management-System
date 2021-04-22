@@ -1,0 +1,111 @@
+{% extends 'a_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Add Student</title>
+{% endblock%}
+
+{% block content %}
+
+<style>
+    .bg{
+        background:white;
+    }
+</style>
+
+<!-- Title -->
+<div class="p-3 mb-4 text-center">
+        <span class="title">Add Student</span>
+</div>
+
+<!-- Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 bg p-5 mb-5">
+            <div class="row">
+                {% if S %}
+                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                         {{S}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                     </div>
+                {% endif %}
+            </div>
+            <form method="post" action="/a_add_student/" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Roll No.:</label>
+                        <input type="text" class="form-control" name="st_roll_no" placeholder="Enter Roll No." required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="st_name" placeholder="Enter Name" required>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Contact:</label>
+                        <input type="number" class="form-control" name="st_mob_no" placeholder="Enter Mob. No." required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Email:</label>
+                        <input type="email" class="form-control" name="st_email" placeholder="Enter Email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Course:</label>
+                        <select class="form-control" name="st_course" required>
+                              <option value="">---Select Course---</option>
+                                {% if value %}
+                                    {% for v in value %}
+                                        <option value="{{v.1}}">{{v.1}}</option>
+                                    {% endfor %}
+                                {% endif %}
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Branch:</label>
+                        <select class="form-control" name="st_branch" required>
+                              <option value="">---Select Branch---</option>
+                                {% if value %}
+                                    {% for v in value %}
+                                        <option value="{{v.2}}">{{v.2}}</option>
+                                    {% endfor %}
+                                {% endif %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Year:</label>
+                        <select class="form-control" name="st_year" required>
+                              <option value="">---Select Year---</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Date of Birth:</label>
+                        <input class="form-control" type="date" name="st_dob" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Image:</label>
+                        <input type="file" class="form-control" name="st_img" required>
+                    </div>
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Add Student</button>
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+{% endblock %}

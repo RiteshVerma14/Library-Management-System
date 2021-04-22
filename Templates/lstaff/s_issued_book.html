@@ -1,0 +1,45 @@
+{% extends 's_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Issued Book</title>
+{% endblock%}
+
+{% block content %}
+
+<!-- Title -->
+<div class="p-3 mb-4 text-center">
+        <span class="title">Issued Book</span>
+    </div>
+
+<!-- Table -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            {% if data %}
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Roll No.</th>
+                        <th>Book No.</th>
+                        <th>Book Name</th>
+                    </tr>
+                </thead>
+                {% for r in data %}
+                <tr>
+                    <td>{{r.roll_no}}</td>
+                    <td>{{r.b_no}}</td>
+                    <td>{{r.b_name}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+     {% else %}
+    <center><h3>No Book Issued Yet. Please Issue any Book.</h3></center>
+    {% endif %}
+</div>
+
+{% endblock %}

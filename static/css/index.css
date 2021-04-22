@@ -1,0 +1,111 @@
+.t{
+    min-height:40px;
+    text-align:center;
+    font-size:2.5vh;
+}
+.social .fa{
+    margin-left:12px;
+    font-size:2.7vh;
+    width:4vh;
+    height:4vh;
+    transition:all ease 1s;
+    line-height:4vh;
+}
+.social .fa-facebook:hover{
+    color:white;
+    background:#4267b2;
+}
+.social .fa-twitter:hover{
+    color:white;
+    background:#4da6e9;
+}
+.social .fa-youtube:hover{
+    color:white;
+    background:#c71f1e;
+}
+.social .fa-linkedin:hover{
+    color:white;
+    background:#0073b1;
+}
+.logo{
+    font-size:5vh;
+}
+b{
+    color:#007bff;
+}
+.search{
+    background:#007bff;
+    color:white;
+}
+.mb-2{
+    margin-top:1.5vh;
+}
+.menu{
+    min-height:8vh;
+    background:#262626;
+}
+.cat{
+    min-height:40vh;
+}
+.mens{
+    background:url({% static 'images/men.jpg'%});
+    background-size:cover;
+}
+.womens{
+    background:url({% static 'images/women.jpg'%});
+    background-size:cover;
+}
+.kids{
+    background:url({% static 'images/kid.jpg'%});
+    background-size:cover;
+}
+.mens h5, .womens h5, .kids h5{
+    background:white;
+    border:1px solid #007bff;
+    border-radius:0.5vh;
+    height:45px;
+    width:100px;
+    text-align:center;
+    line-height:45px;
+    margin:17vh auto;
+}
+#menu{
+    color:white;
+}
+.menu li:hover{
+    background:#007bff;
+    transition: all ease 1s;
+}
+.product{
+    min-height:30vh;
+    background:#f8f8f0;
+}
+s{
+    color:red;
+}
+.btn-outline-primary{
+    color:black;
+}
+.service{
+    min-height:40vh;
+    background:#f8f8f0;
+}
+.ufooter{
+    min-height:50vh;
+    background:#262626;
+}
+.bfooter{
+    min-height:10vh;
+    background:black;
+}
+::-webkit-scrollbar{
+    width:2px;
+    height:0px;
+}
+::-webkit-scrollbar-track{
+    background:black;
+}
+::-webkit-scrollbar-thumb{
+    background:#f8f8f0;
+    border-radius:3vh;
+}

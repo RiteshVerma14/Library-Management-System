@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/flickity.min.css' %}" rel="stylesheet"/>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
+    {% block title %}
+    {% endblock %}
+    <style>
+        body, html {
+            margin: 0;
+            scroll-behavior:smooth;
+            background:#f8f8f0;
+        }
+        ::-webkit-scrollbar{
+            width:2px;
+            height:0px;
+        }
+        ::-webkit-scrollbar-track{
+            background:#b19a3a;
+        }
+        ::-webkit-scrollbar-thumb{
+            background:#493206;
+            border-radius:3vh;
+        }
+        .header{
+            background: #493206;
+            font-size: 40px;
+            color: white;
+            text-align: center;
+            text-shadow: 6px 6px 8px #000000;
+        }
+        .menu{
+            background:#b19a3a;
+            color:white;
+            position: sticky;
+            top: 0%;
+            z-index: 99;
+        }
+        .title{
+            font-size: 25px;
+            border-bottom: 2px solid #493206;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header text-center p-4">HBTU Library</div>
+
+    <!-- Menubar -->
+    <nav class="navbar menu">
+        <a class="nav-link text-white" href="/s_staff_panel/">Home</a>
+        <a class="nav-link text-white" href="#" data-toggle="dropdown">{{request.user.first_name}}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right:0;left:auto;">
+            <a class="dropdown-item" href="#">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Change Password</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/s_log_out/">Log Out</a>
+        </div>
+    </nav>
+
+    <!-- Contents -->
+    <div>
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+</body>
+</html>

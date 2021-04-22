@@ -1,0 +1,95 @@
+{% extends 's_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Search Book</title>
+{% endblock%}
+
+{% block content %}
+
+<style>
+    .bg{
+        background:white;
+    }
+</style>
+
+<!-- Title -->
+<div class="p-3 mb-4 text-center">
+    <span class="title">Search Book</span>
+</div>
+
+<!-- Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 bg p-5 mb-5">
+            <div class="row">
+                {% if S %}
+                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                         {{S}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                     </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <form method="post" action="/s_search_book/" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-row">
+                                    <div class="form-group col-sm-9">
+                                        <label>Book No.:</label>
+                                        <input type="text" class="form-control" name="book_no" placeholder="Enter Book No." required />
+                                    </div>
+                                    <div class="form-group col-sm-3" style="margin-top:7.5%">
+                                        <button type="submit" name="submit" class="btn btn-primary">Ok</button>
+                                    </div>
+                                </div>
+                            </form>
+                            {% if details %}
+                                {% if result %}
+                                    <div class="form-row">
+                                        <label>Status:</label>
+                                    </div>
+                                    <img src="{% static 'images/issued.jpg' %}" class="ml-5" style="height:35vh;width:48vh;">
+                                {% else %}
+                                    <div class="form-row">
+                                        <label>Status:</label>
+                                    </div>
+                                    <img src="{% static 'images/Not_issued.png' %}" class="ml-5" style="height:35vh;width:48vh;">
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-6">
+                            {% if details %}
+                                {% for d in details %}
+                                    <div class="form-group">
+                                        <label>Book No.:</label>
+                                        <input type="text" class="form-control" name="b_no" value="{{d.book_no}}" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Book Name:</label>
+                                        <input type="text" class="form-control" name="b_name" value="{{d.book_name}}" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Book Author:</label>
+                                        <input type="text" class="form-control" name="b_author" value="{{d.book_author}}" readonly />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Book Title:</label>
+                                        <input type="text" class="form-control" name="b_title" value="{{d.book_title}}" readonly />
+                                    </div>
+                                {% endfor %}
+                            {% endif%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

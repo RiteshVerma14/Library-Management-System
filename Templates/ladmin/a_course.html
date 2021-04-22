@@ -1,0 +1,48 @@
+{% extends 'a_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Courses</title>
+{% endblock%}
+
+{% block content %}
+
+<!-- Title -->
+<div class="p-3 mb-4 text-center">
+        <span class="title">Courses</span>
+    </div>
+
+<!-- Table -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <a href="/a_add_course/" class="btn btn-light btn-block border-secondary">Add Course <span class="fa fa-plus"></span></a>
+            {% if value %}
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Course Id</th>
+                        <th>Course Name</th>
+                        <th>Branch Name</th>
+                        <th><center>Edit</center></th>
+                        <th><center>Delete</center></th>
+                    </tr>
+                </thead>
+                {% for r in value %}
+                <tr>
+                    <td>{{r.0}}</td>
+                    <td>{{r.1}}</td>
+                    <td>{{r.2}}</td>
+                    <td><center><a href="/a_update_course/?c_id={{r.0}}&page=edit" class="btn btn-primary btn-sm"><span class="fa fa-pencil-square-o"></span></a></center></td>
+                    <td><center><a href="/a_course/?c_id={{r.0}}&page=dlt" class="btn btn-danger btn-sm"><span class="fa fa-trash"></span></a></center></td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+{% endblock %}

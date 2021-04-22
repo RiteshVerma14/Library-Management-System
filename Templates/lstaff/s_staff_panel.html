@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/flickity.min.css' %}" rel="stylesheet"/>
+    <script src="{% static 'js/jquery.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/flickity.pkgd.min.js' %}"></script>
+    <title>Staff Panel</title>
+    <style>
+        body, html {
+            margin: 0;
+            scroll-behavior:smooth;
+            background:#f8f8f0;
+        }
+        ::-webkit-scrollbar{
+            width:2px;
+            height:0px;
+        }
+        ::-webkit-scrollbar-track{
+            background:#b19a3a;
+        }
+        ::-webkit-scrollbar-thumb{
+            background:#493206;
+            border-radius:3vh;
+        }
+        .header{
+            background: #493206;
+            font-size: 40px;
+            color: white;
+            text-align: center;
+            text-shadow: 6px 6px 8px #000000;
+        }
+        .menu{
+            background:#b19a3a;
+            color:white;
+            position: sticky;
+            top: 0%;
+            z-index: 99;
+        }
+        .title{
+            font-size: 25px;
+            border-bottom: 2px solid #493206;
+        }
+        .box{
+            width: 12rem;
+            border-radius: 7px;
+        }
+
+        .box:hover{
+            box-shadow: 0px 0px 10px 0px gray;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header text-center p-4">HBTU Library</div>
+
+    <!-- Menubar -->
+    <nav class="navbar menu">
+        <a class="nav-link text-white" href="/s_staff_panel/">Home</a>
+        <a class="nav-link text-white" href="#" data-toggle="dropdown">{{request.user.first_name}}</a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="right:0;left:auto;">
+            <a class="dropdown-item" href="#">Profile</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Change Password</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/s_log_out/">Log Out</a>
+        </div>
+    </nav>
+
+    <!-- Dashboard heading -->
+    <div class="p-3 mb-4 text-center">
+        <span class="title">Dashboard</span>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="container">
+        <div class="row">
+            <a href="/s_book_issue/" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Book Issue</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-arrow-up"></span></h5>
+                    </div>
+                </div>
+            </a>
+            <!--<a href="#" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Book Re-issue</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-refresh"></span></h5>
+                    </div>
+                </div>
+            </a>-->
+            <a href="/s_return_book/" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Return Book</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-download"></span></h5>
+                    </div>
+                </div>
+            </a>
+            <a href="/s_issued_book/" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Issued Books</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-book"></span></h5>
+                    </div>
+                </div>
+            </a>
+            <a href="/s_search_book/" class="text-decoration-none mb-5 mx-auto">
+                <div class="card text-dark box">
+                    <div class="card-header h5">Search Book</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center display-4"><span class="fa fa-search"></span></h5>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

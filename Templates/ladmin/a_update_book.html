@@ -1,0 +1,66 @@
+{% extends 'a_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Update Book</title>
+{% endblock%}
+
+{% block content %}
+
+<!-- Style -->
+<style>
+    .bg{
+        background:white;
+    }
+</style>
+
+<!-- Title -->
+<div class="p-3 mb-4 text-center">
+    <span class="title">Update Book</span>
+</div>
+
+<!-- Form -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8 bg p-5 mb-5">
+            {% if b_details %}
+            {% for b in b_details %}
+            <div class="row">
+                {% if S %}
+                     <div class="alert alert-success alert-dismissible fade show" role="alert">
+                         {{S}}
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                     </div>
+                {% endif %}
+            </div>
+            <form method="post" action="#" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form-group">
+                    <label>Book No.:</label>
+                    <input type="text" class="form-control" name="b_no" value="{{b.book_no}}" placeholder="Enter Book No." required readonly />
+                </div>
+                <div class="form-group">
+                    <label>Book Name:</label>
+                    <input type="text" class="form-control" name="b_name" value="{{b.book_name}}" placeholder="Enter Book Name" required />
+                </div>
+                <div class="form-group">
+                    <label>Book Author:</label>
+                    <input type="text" class="form-control" name="b_author" value="{{b.book_author}}" placeholder="Enter Book Author" required />
+                </div>
+                <div class="form-group">
+                    <label>Book Title:</label>
+                    <input type="text" class="form-control" name="b_title" value="{{b.book_title}}" placeholder="Enter Book Title" required />
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary">Update Book</button>
+            </form>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+{% endblock %}
